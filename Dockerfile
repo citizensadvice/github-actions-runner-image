@@ -1,9 +1,12 @@
 FROM ghcr.io/actions/actions-runner:latest
+
 USER 0
+
 RUN apt update && \
     apt dist-upgrade -y && \
     apt install -y curl python3-pip git && \
     rm -rf /var/cache/apt/*
+
 RUN apt update && \
     apt install -y ca-certificates gnupg && \
     mkdir -p /etc/apt/keyrings && \
@@ -12,6 +15,11 @@ RUN apt update && \
     apt update && \
     apt install nodejs -y && \
     rm -rf /var/cache/apt/*
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf aws*
 
 USER 1001
 ENV PATH "$PATH:/home/runner/.local/bin"
