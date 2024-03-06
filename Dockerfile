@@ -21,5 +21,8 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     ./aws/install && \
     rm -rf aws*
 
+RUN curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o /bin/kubectl && \
+    chmod +x /bin/kubectl
+
 USER 1001
 ENV PATH "$PATH:/home/runner/.local/bin"
