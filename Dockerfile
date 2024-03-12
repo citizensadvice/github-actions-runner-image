@@ -26,6 +26,11 @@ RUN curl -L "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/st
 
 RUN npm i -g aws-cdk
 
+RUN curl -L 'https://download.docker.com/linux/static/stable/x86_64/docker-25.0.4.tgz' -o docker.tar.gz && \
+    tar xf docker.tar.gz && \
+    mv docker/* /usr/bin/ && \
+    rm docker* -r
+
 USER 1001
 
 RUN mkdir -p /home/runner/.local/bin
